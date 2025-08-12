@@ -201,9 +201,21 @@ export default function HomePage() {
                 className="flex space-x-4 lg:space-x-6 pt-4"
               >
                 {[
-                  { icon: Github, href: "#", label: "GitHub" },
-                  { icon: Linkedin, href: "#", label: "LinkedIn" },
-                  { icon: Twitter, href: "#", label: "Twitter" },
+                  {
+                    icon: Github,
+                    href: "https://github.com/Kvnq-Poza",
+                    label: "GitHub",
+                  },
+                  {
+                    icon: Linkedin,
+                    href: "https://www.linkedin.com/in/kvnqpoza02344/",
+                    label: "LinkedIn",
+                  },
+                  {
+                    icon: Twitter,
+                    href: "https://x.com/KvnqPoza",
+                    label: "Twitter",
+                  },
                 ].map(({ icon: Icon, href, label }) => (
                   <motion.a
                     key={label}
