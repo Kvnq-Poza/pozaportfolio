@@ -7,6 +7,7 @@ import { GlobalStateProvider } from "@/contexts/global-context";
 import { Navigation } from "@/components/navigation";
 import { Toaster } from "@/components/ui/sonner";
 import { ThemeInitializer } from "@/components/theme-initializer";
+import { Analytics } from "@vercel/analytics/next";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -60,6 +61,7 @@ export default function RootLayout({
             <main className="min-h-screen">{children}</main>
             <Toaster />
           </GlobalStateProvider>
+          <Analytics />
         </ThemeProvider>
       </body>
     </html>
