@@ -81,6 +81,8 @@ export const SCOREBOARD = {
 
 export const SKILLS = [
   "React",
+  "JavaScript",
+  "TypeScript",
   "Next.js",
   "Python",
   "Node.js",
@@ -101,6 +103,8 @@ export const POZA_DATA = {
     {
       skill: "Frontend",
       skill_list: [
+        "HTML & CSS",
+        "JavaScript",
         "React",
         "Next.js",
         "TypeScript",
@@ -114,7 +118,6 @@ export const POZA_DATA = {
       skill_list: [
         "Python",
         "Node.js",
-        "SQL",
         "Express",
         "FastAPI",
         "Supabase",
@@ -123,16 +126,28 @@ export const POZA_DATA = {
     },
     {
       skill: "DevOps",
-      skill_list: ["Git", "Docker", "Vercel", "CI/CD"],
+      skill_list: ["Git", "Docker", "Vercel", "CI/CD", "Netlify"],
+    },
+    {
+      skill: "Database",
+      skill_list: ["MySQL", "MongoDB", "Redis"],
     },
     {
       skill: "Tools & Others",
-      skill_list: ["VS Code"],
+      skill_list: ["VS Code", "Dockerization"],
     },
   ],
 };
 
 export const ABOUT_SKILLS = [
+  {
+    name: "JavaScript",
+    icon: "/assets/Javascript-icon.png",
+  },
+  {
+    name: "Typescript",
+    icon: "/assets/Typescript-icon.png",
+  },
   {
     name: "React",
     icon: "/assets/react-icon.png",
