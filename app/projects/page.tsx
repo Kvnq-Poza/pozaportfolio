@@ -150,7 +150,7 @@ export default function ProjectsPage() {
                         </CardTitle>
                         <div className="flex items-center gap-1 text-[var(--text-secondary)] text-sm">
                           <Calendar className="h-4 w-4" aria-hidden="true" />
-                          {project.date}
+                          {project.year}
                         </div>
                       </div>
                       <p className="text-[var(--text-secondary)] text-sm leading-relaxed">
@@ -260,7 +260,7 @@ export default function ProjectsPage() {
                         </CardTitle>
                         <div className="flex items-center gap-1 text-[var(--text-secondary)] text-xs">
                           <Calendar className="h-3 w-3" aria-hidden="true" />
-                          {project.date}
+                          {project.year}
                         </div>
                       </div>
                       <p className="text-[var(--text-secondary)] text-sm leading-relaxed line-clamp-3">
