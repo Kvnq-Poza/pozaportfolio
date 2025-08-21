@@ -142,7 +142,7 @@ export const POZA_DATA = {
 export const ABOUT_SKILLS = [
   {
     name: "JavaScript",
-    icon: "/assets/Javascript-icon.png",
+    icon: "/assets/javascript-icon.svg",
   },
   {
     name: "Typescript",
