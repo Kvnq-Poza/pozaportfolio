@@ -189,18 +189,20 @@ export default function ProjectsPage() {
                             ? "Coming Soon"
                             : "Live Demo"}
                         </Button>
-                        <Button
-                          size="sm"
-                          variant="outline"
-                          className="border-[var(--border-color)] text-[var(--text-color)] hover:bg-[var(--primary-color)] hover:text-white bg-transparent flex-1"
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            window.open(project.githubUrl, "_blank");
-                          }}
-                        >
-                          <Github className="mr-2 h-4 w-4" />
-                          Code
-                        </Button>
+                        {project.githubUrl && (
+                          <Button
+                            size="sm"
+                            variant="outline"
+                            className="border-[var(--border-color)] text-[var(--text-color)] hover:bg-[var(--primary-color)] hover:text-white bg-transparent flex-1"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              window.open(project.githubUrl, "_blank");
+                            }}
+                          >
+                            <Github className="mr-2 h-4 w-4" />
+                            Code
+                          </Button>
+                        )}
                       </div>
                     </CardContent>
                   </Card>
@@ -300,18 +302,20 @@ export default function ProjectsPage() {
                           <ExternalLink className="mr-1 h-3 w-3" />
                           {project.status === "Coming soon" ? "Soon" : "Demo"}
                         </Button>
-                        <Button
-                          size="sm"
-                          variant="outline"
-                          className="border-[var(--border-color)] text-[var(--text-color)] hover:bg-[var(--primary-color)] hover:text-white bg-transparent flex-1 text-xs"
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            window.open(project.githubUrl, "_blank");
-                          }}
-                        >
-                          <Github className="mr-1 h-3 w-3" />
-                          Code
-                        </Button>
+                        {project.githubUrl && (
+                          <Button
+                            size="sm"
+                            variant="outline"
+                            className="border-[var(--border-color)] text-[var(--text-color)] hover:bg-[var(--primary-color)] hover:text-white bg-transparent flex-1 text-xs"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              window.open(project.githubUrl, "_blank");
+                            }}
+                          >
+                            <Github className="mr-1 h-3 w-3" />
+                            Code
+                          </Button>
+                        )}
                       </div>
                     </CardContent>
                   </Card>
