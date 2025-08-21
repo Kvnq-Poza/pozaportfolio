@@ -10,6 +10,7 @@ import {
   Eye,
   GitFork,
   Egg,
+  Clock,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -38,6 +39,23 @@ export default function ProjectsPage() {
 
   const featuredProjects = PROJECTS.filter((project) => project.featured);
   const otherProjects = PROJECTS.filter((project) => !project.featured);
+
+  const getStatusBadgeColor = (status: string) => {
+    switch (status.toLowerCase()) {
+      case "coming soon":
+        return "bg-yellow-500/10 text-yellow-600 border-yellow-500/20";
+      case "in progress":
+        return "bg-blue-500/10 text-blue-600 border-blue-500/20";
+      case "completed":
+        return "bg-green-500/10 text-green-600 border-green-500/20";
+      case "on hold":
+        return "bg-gray-500/10 text-gray-600 border-gray-500/20";
+      case "archived":
+        return "bg-red-500/10 text-red-600 border-red-500/20";
+      default:
+        return "bg-purple-500/10 text-purple-600 border-purple-500/20";
+    }
+  };
 
   return (
     <>
@@ -105,13 +123,24 @@ export default function ProjectsPage() {
                         alt={project.title}
                         className="w-full h-48 object-cover"
                       />
-                      <div className="absolute top-4 right-4">
+                      <div className="absolute top-4 right-4 flex gap-2">
                         <Badge
                           variant="default"
                           className="bg-[var(--primary-color)] text-white"
                         >
                           Featured
                         </Badge>
+                        {project.status && (
+                          <Badge
+                            variant="outline"
+                            className={`${getStatusBadgeColor(
+                              project.status
+                            )} flex items-center gap-1`}
+                          >
+                            <Clock className="h-3 w-3" />
+                            {project.status}
+                          </Badge>
+                        )}
                       </div>
                     </div>
                     <CardHeader>
@@ -153,9 +182,12 @@ export default function ProjectsPage() {
                             e.stopPropagation();
                             window.open(project.liveUrl, "_blank");
                           }}
+                          disabled={project.status === "Coming soon"}
                         >
                           <ExternalLink className="mr-2 h-4 w-4" />
-                          Live Demo
+                          {project.status === "Coming soon"
+                            ? "Coming Soon"
+                            : "Live Demo"}
                         </Button>
                         <Button
                           size="sm"
@@ -207,6 +239,19 @@ export default function ProjectsPage() {
                         alt={project.title}
                         className="w-full h-40 object-cover"
                       />
+                      {project.status && (
+                        <div className="absolute top-3 right-3">
+                          <Badge
+                            variant="outline"
+                            className={`${getStatusBadgeColor(
+                              project.status
+                            )} text-xs flex items-center gap-1`}
+                          >
+                            <Clock className="h-2 w-2" />
+                            {project.status}
+                          </Badge>
+                        </div>
+                      )}
                     </div>
                     <CardHeader className="pb-3">
                       <div className="flex justify-between items-start mb-2">
@@ -250,9 +295,10 @@ export default function ProjectsPage() {
                             e.stopPropagation();
                             window.open(project.liveUrl, "_blank");
                           }}
+                          disabled={project.status === "Coming soon"}
                         >
                           <ExternalLink className="mr-1 h-3 w-3" />
-                          Demo
+                          {project.status === "Coming soon" ? "Soon" : "Demo"}
                         </Button>
                         <Button
                           size="sm"

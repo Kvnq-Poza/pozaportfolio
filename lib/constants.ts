@@ -246,6 +246,7 @@ export const PROJECTS = [
     liveUrl: "https://#",
     featured: true,
     date: "2025",
+    status: "Coming soon",
   },
   {
     id: 3,
