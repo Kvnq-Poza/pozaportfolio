@@ -2,3 +2,4 @@ node_modules
 .git
 .next
 .env*
+.DS_Store
