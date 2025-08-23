@@ -1,28 +1,22 @@
 "use client";
 
 import { motion } from "framer-motion";
-import {
-  ExternalLink,
-  Github,
-  Calendar,
-  Tag,
-  Star,
-  Eye,
-  GitFork,
-  Egg,
-  Clock,
-} from "lucide-react";
+import { Star, Tag, Egg } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { CustomCursor } from "@/components/custom-cursor";
+import { ProjectModal } from "@/components/project-modal";
+import { ProjectCard } from "@/components/project-card";
 import { useRouter } from "next/navigation";
 import { useGlobalState } from "@/contexts/global-context";
 import { EGGS, PROJECTS } from "@/lib/constants";
+import { useState } from "react";
 
 export default function ProjectsPage() {
   const router = useRouter();
   const { addEasterEgg } = useGlobalState();
+  const [selectedProject, setSelectedProject] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleGetInTouch = () => {
     router.push("/contact");
@@ -30,6 +24,7 @@ export default function ProjectsPage() {
 
   const triggerProjectsEgg = () =>
     addEasterEgg(EGGS.PROJECTS_TITLE.id, EGGS.PROJECTS_TITLE.points);
+
   const onKeyActivate = (e: React.KeyboardEvent, fn: () => void) => {
     if (e.key === "Enter" || e.key === " ") {
       e.preventDefault();
@@ -37,25 +32,18 @@ export default function ProjectsPage() {
     }
   };
 
+  const handleProjectClick = (project: any) => {
+    setSelectedProject(project);
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setSelectedProject(null);
+  };
+
   const featuredProjects = PROJECTS.filter((project) => project.featured);
   const otherProjects = PROJECTS.filter((project) => !project.featured);
-
-  const getStatusBadgeColor = (status: string) => {
-    switch (status.toLowerCase()) {
-      case "coming soon":
-        return "bg-yellow-500/10 text-yellow-600 border-yellow-500/20";
-      case "in progress":
-        return "bg-blue-500/10 text-blue-600 border-blue-500/20";
-      case "completed":
-        return "bg-green-500/10 text-green-600 border-green-500/20";
-      case "on hold":
-        return "bg-gray-500/10 text-gray-600 border-gray-500/20";
-      case "archived":
-        return "bg-red-500/10 text-red-600 border-red-500/20";
-      default:
-        return "bg-purple-500/10 text-purple-600 border-purple-500/20";
-    }
-  };
 
   return (
     <>
@@ -88,7 +76,7 @@ export default function ProjectsPage() {
             <p className="text-xl text-[var(--text-secondary)] max-w-2xl mx-auto">
               A collection of projects I've built using various technologies.
               Each project represents a unique challenge and learning
-              experience.
+              experience. Click on any project to view more details.
             </p>
           </motion.div>
 
@@ -108,105 +96,13 @@ export default function ProjectsPage() {
             </h2>
             <div className="grid lg:grid-cols-2 gap-8">
               {featuredProjects.map((project, index) => (
-                <motion.div
+                <ProjectCard
                   key={project.id}
-                  initial={{ opacity: 0, y: 50 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.3 + index * 0.1 }}
-                  whileHover={{ y: -5 }}
-                  className="cursor-pointer"
-                >
-                  <Card className="border-[var(--border-color)] bg-[var(--bg-color)] overflow-hidden hover:border-[var(--primary-color)] transition-colors h-full">
-                    <div className="relative">
-                      <img
-                        src={project.image || "/placeholder.svg"}
-                        alt={project.title}
-                        className="w-full h-48 object-cover"
-                      />
-                      <div className="absolute top-4 right-4 flex gap-2">
-                        <Badge
-                          variant="default"
-                          className="bg-[var(--primary-color)] text-white"
-                        >
-                          Featured
-                        </Badge>
-                        {project.status && (
-                          <Badge
-                            variant="outline"
-                            className={`${getStatusBadgeColor(
-                              project.status
-                            )} flex items-center gap-1`}
-                          >
-                            <Clock className="h-3 w-3" />
-                            {project.status}
-                          </Badge>
-                        )}
-                      </div>
-                    </div>
-                    <CardHeader>
-                      <div className="flex justify-between items-start mb-2">
-                        <CardTitle className="text-[var(--text-color)] text-xl">
-                          {project.title}
-                        </CardTitle>
-                        <div className="flex items-center gap-1 text-[var(--text-secondary)] text-sm">
-                          <Calendar className="h-4 w-4" aria-hidden="true" />
-                          {project.year}
-                        </div>
-                      </div>
-                      <p className="text-[var(--text-secondary)] text-sm leading-relaxed">
-                        {project.description}
-                      </p>
-                    </CardHeader>
-                    <CardContent>
-                      {/* Technologies */}
-                      <div className="mb-4">
-                        <div className="flex flex-wrap gap-2">
-                          {project.technologies.map((tech) => (
-                            <Badge
-                              key={tech}
-                              variant="secondary"
-                              className="text-xs"
-                            >
-                              {tech}
-                            </Badge>
-                          ))}
-                        </div>
-                      </div>
-
-                      {/* Actions */}
-                      <div className="flex gap-3">
-                        <Button
-                          size="sm"
-                          className="bg-[var(--primary-color)] hover:bg-[var(--accent-color)] text-white border-0 flex-1"
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            window.open(project.liveUrl, "_blank");
-                          }}
-                          disabled={project.status === "Coming soon"}
-                        >
-                          <ExternalLink className="mr-2 h-4 w-4" />
-                          {project.status === "Coming soon"
-                            ? "Coming Soon"
-                            : "Live Demo"}
-                        </Button>
-                        {project.githubUrl && (
-                          <Button
-                            size="sm"
-                            variant="outline"
-                            className="border-[var(--border-color)] text-[var(--text-color)] hover:bg-[var(--primary-color)] hover:text-white bg-transparent flex-1"
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              window.open(project.githubUrl, "_blank");
-                            }}
-                          >
-                            <Github className="mr-2 h-4 w-4" />
-                            Code
-                          </Button>
-                        )}
-                      </div>
-                    </CardContent>
-                  </Card>
-                </motion.div>
+                  project={project}
+                  index={index}
+                  onProjectClick={handleProjectClick}
+                  featured={true}
+                />
               ))}
             </div>
           </motion.section>
@@ -226,100 +122,13 @@ export default function ProjectsPage() {
             </h2>
             <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-6">
               {otherProjects.map((project, index) => (
-                <motion.div
+                <ProjectCard
                   key={project.id}
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.7 + index * 0.1 }}
-                  whileHover={{ y: -3 }}
-                  className="cursor-pointer"
-                >
-                  <Card className="border-[var(--border-color)] bg-[var(--bg-color)] overflow-hidden hover:border-[var(--primary-color)] transition-colors h-full">
-                    <div className="relative">
-                      <img
-                        src={project.image || "/placeholder.svg"}
-                        alt={project.title}
-                        className="w-full h-40 object-cover"
-                      />
-                      {project.status && (
-                        <div className="absolute top-3 right-3">
-                          <Badge
-                            variant="outline"
-                            className={`${getStatusBadgeColor(
-                              project.status
-                            )} text-xs flex items-center gap-1`}
-                          >
-                            <Clock className="h-2 w-2" />
-                            {project.status}
-                          </Badge>
-                        </div>
-                      )}
-                    </div>
-                    <CardHeader className="pb-3">
-                      <div className="flex justify-between items-start mb-2">
-                        <CardTitle className="text-[var(--text-color)] text-lg">
-                          {project.title}
-                        </CardTitle>
-                        <div className="flex items-center gap-1 text-[var(--text-secondary)] text-xs">
-                          <Calendar className="h-3 w-3" aria-hidden="true" />
-                          {project.year}
-                        </div>
-                      </div>
-                      <p className="text-[var(--text-secondary)] text-sm leading-relaxed line-clamp-3">
-                        {project.description}
-                      </p>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="mb-3">
-                        <div className="flex flex-wrap gap-1">
-                          {project.technologies.slice(0, 3).map((tech) => (
-                            <Badge
-                              key={tech}
-                              variant="secondary"
-                              className="text-xs"
-                            >
-                              {tech}
-                            </Badge>
-                          ))}
-                          {project.technologies.length > 3 && (
-                            <Badge variant="secondary" className="text-xs">
-                              +{project.technologies.length - 3}
-                            </Badge>
-                          )}
-                        </div>
-                      </div>
-
-                      <div className="flex gap-2">
-                        <Button
-                          size="sm"
-                          className="bg-[var(--primary-color)] hover:bg-[var(--accent-color)] text-white border-0 flex-1 text-xs"
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            window.open(project.liveUrl, "_blank");
-                          }}
-                          disabled={project.status === "Coming soon"}
-                        >
-                          <ExternalLink className="mr-1 h-3 w-3" />
-                          {project.status === "Coming soon" ? "Soon" : "Demo"}
-                        </Button>
-                        {project.githubUrl && (
-                          <Button
-                            size="sm"
-                            variant="outline"
-                            className="border-[var(--border-color)] text-[var(--text-color)] hover:bg-[var(--primary-color)] hover:text-white bg-transparent flex-1 text-xs"
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              window.open(project.githubUrl, "_blank");
-                            }}
-                          >
-                            <Github className="mr-1 h-3 w-3" />
-                            Code
-                          </Button>
-                        )}
-                      </div>
-                    </CardContent>
-                  </Card>
-                </motion.div>
+                  project={project}
+                  index={index}
+                  onProjectClick={handleProjectClick}
+                  featured={false}
+                />
               ))}
             </div>
           </motion.section>
@@ -351,6 +160,13 @@ export default function ProjectsPage() {
             </Card>
           </motion.div>
         </div>
+
+        {/* Project Modal */}
+        <ProjectModal
+          project={selectedProject}
+          isOpen={isModalOpen}
+          onClose={handleCloseModal}
+        />
       </div>
     </>
   );
