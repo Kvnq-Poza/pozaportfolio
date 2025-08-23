@@ -1,5 +1,4 @@
 // Centralized app constants to avoid magic numbers and keep things consistent
-
 export const NAV_ITEMS = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About" },
@@ -219,8 +218,22 @@ export const PROJECTS = [
   {
     id: 1,
     title: "Freelikes App",
+    role: "Full-stack Developer",
     description:
-      "A social platform where creators can grow their Instagram accounts",
+      "FreeLikes is a modern web application that helps users increase their social media engagement through authentic interactions. Built with Next.js, Prisma, and MySQL, it provides a seamless experience for managing social media growth services.",
+    features: [
+      "Authentication (social login)",
+      "Service dashboard",
+      "Analytics",
+    ],
+    architecture: [
+      "Frontend: Next.js 15 with React and TypeScript",
+      "Backend: Next.js API routes with server components",
+      "Database: MySQL with Prisma ORM",
+      "Authentication: NextAuth.js with JWT",
+      "Styling: Tailwind CSS with shadcn/ui components",
+      "Deployment: Docker containerization",
+    ],
     image: "/assets/freelikes-screen.jpg",
     technologies: [
       "Next.js",
@@ -237,6 +250,7 @@ export const PROJECTS = [
   {
     id: 2,
     title: "Trakka App",
+    role: "Developer",
     description:
       "A Progressive Web App (PWA) that lets users track incomes, expenses, and budgets, visualize their finances, mark budget checklist, and get insights on their income.",
     image: "/placeholder.svg?height=300&width=500",
@@ -248,11 +262,19 @@ export const PROJECTS = [
   },
   {
     id: 3,
-    title: "YT Downloader",
+    title: "YouTube Downloader API",
+    role: "Backend Developer",
     description:
       "A Restful API for downloading YouTube video and audio. \n Supports real-time progress via websocket, redis caching, Multi-format downloads, & Auto-scaling",
+    features: [
+      "Websocket Progress tracking",
+      "Multi-format downloads",
+      "Auto-scaling",
+      "Containerization",
+      "Redis caching",
+    ],
     image: "/assets/yt-downloader-screen.jpg",
-    technologies: ["Node.js", "Redis", "Docker", "Socker.io"],
+    technologies: ["Node.js", "Redis", "Docker", "Socker.io", "RESTful API"],
     liveUrl: "https://rapidapi.com/KvnqPoza/api/yt-video-audio-downloader-api",
     featured: false,
     year: "2025",
@@ -260,6 +282,7 @@ export const PROJECTS = [
   {
     id: 4,
     title: "Freetools App",
+    role: "Full-stack Developer",
     description:
       "A free tool library with a wide range of online tools aimed at boosting productivity and simplifing tasks",
     image: "/assets/freetools-screen.png",
@@ -277,7 +300,52 @@ export const PROJECTS = [
   },
   {
     id: 5,
+    title: "Lenostube YouTube Royalty-free music",
+    role: "WordPress Developer",
+    description:
+      "A library of over 5,000 YouTube Royalty-free music, built to help creators easily access music for their content. Built using PHP, HTML, CSS, JavaScript, and MySQL on WordPress using a custom-built wordpress plugin.",
+    features: [
+      "Advanced sorting and filtering",
+      "Video suggestions",
+      "Genre and mood filtering",
+      "15+ Genres and Moods",
+      "Fast media fetching with DB indexing",
+      "Save favourite videos",
+      "Custom WordPress plugin",
+    ],
+    image: "/assets/lenostube-screen.png",
+    technologies: ["Javascript", "PHP", "WordPress", "HTML5", "CSS3", "MySQL"],
+    liveUrl:
+      "https://www.lenostube.com/en/youtube-copyright-free-music-library/",
+    featured: false,
+    year: "2024",
+  },
+  {
+    id: 6,
+    title: "AdStage WordPress website tools",
+    role: "WordPress Developer",
+    description:
+      "A custom plugin for with tools for creating and optimising ads across multiple platforms.",
+    features: [
+      "Ad Copy Generator",
+      "Instagram Ad Generator",
+      "Facebook Ad Copy Generator",
+      "Google Ad Copy Generator",
+      "Google Ads Keyword Generator (Integrated with Google Auto-suggestions API and ChatGPT)",
+      "Keyword CPC Checker (Integrated with Keywords Everywhere API)",
+      "Bulk Keyword Checker",
+      "AI Ad Image Generator",
+    ],
+    image: "/assets/adstage-screen.png",
+    technologies: ["Javascript", "PHP", "WordPress", "HTML5", "CSS3"],
+    liveUrl: "https://adstage.io",
+    featured: false,
+    year: "2024",
+  },
+  {
+    id: 7,
     title: "SaveYT",
+    role: "Full-stack Developer",
     description:
       "A downloader app which enables easy downloads of YouTube videos into mp3 and mp4 formats",
     image: "/assets/saveyt-screen.png",
@@ -287,8 +355,9 @@ export const PROJECTS = [
     year: "2024",
   },
   {
-    id: 6,
+    id: 8,
     title: "Guesser",
+    role: "Front-end Developer",
     description: "A simple number guessing game",
     image: "/assets/guesser-screen.png",
     technologies: ["Javascript", "CSS3", "HTML5"],
@@ -297,8 +366,9 @@ export const PROJECTS = [
     year: "2023",
   },
   {
-    id: 7,
+    id: 9,
     title: "Weather-App",
+    role: "Backend Developer",
     description:
       "Pulls request from the Open Weather API to give real-time weather information on any region",
     image: "/placeholder.svg?height=300&width=500",
