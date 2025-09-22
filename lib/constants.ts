@@ -278,6 +278,35 @@ export const PROJECTS = [
   },
   {
     id: 3,
+    title: "A11y Live",
+    role: "Developer",
+    description:
+      "A comprehensive, real-time accessibility testing tool that monitors DOM changes and provides instant feedback on WCAG compliance violations. Built with JavaScript, this tool helps developers identify and fix accessibility issues during development.",
+    features: [
+      "Real-time Monitoring",
+      "WCAG Compliance",
+      "Performance Optimized",
+      "Severity Classification",
+      "Element Highlighting",
+      "Detailed Reporting",
+      "Keyboard Accessible UI",
+      "Export Options",
+    ],
+    architecture: [
+      "Frontend: JavaScript",
+      "Real-time Monitoring: MutationObserver",
+      "Analysis: Custom WCAG 2.1 Rules Engine",
+      "UI: Interactive, Searchable, Filterable",
+      "Export: JSON, CSV, HTML formats",
+    ],
+    image: "/assets/a11y-live-screen.png",
+    technologies: ["JavaScript", "WCAG", "MutationObserver", "HTML", "CSS"],
+    liveUrl: "https://a11y-live.js.org/",
+    featured: true,
+    year: "2025",
+  },
+  {
+    id: 4,
     title: "YouTube Downloader API",
     role: "Backend Developer",
     description:
