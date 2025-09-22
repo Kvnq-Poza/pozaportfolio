@@ -147,7 +147,7 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
                   <div>
                     <div className="flex items-center gap-4 mb-4">
                       <h3 className="text-xl font-semibold text-[var(--text-color)]">
-                        {project.role}
+                        Role - {project.role}
                       </h3>
                       {project.status && (
                         <Badge
