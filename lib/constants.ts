@@ -133,7 +133,7 @@ export const POZA_DATA = {
     },
     {
       skill: "Tools & Others",
-      skill_list: ["VS Code", "Dockerization"],
+      skill_list: ["VS Code", "Dockerization", "Contentful"],
     },
   ],
 };
