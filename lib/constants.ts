@@ -325,7 +325,7 @@ export const PROJECTS = [
     year: "2025",
   },
   {
-    id: 4,
+    id: 5,
     title: "Freetools App",
     role: "Full-stack Developer",
     description:
@@ -344,7 +344,7 @@ export const PROJECTS = [
     year: "2024",
   },
   {
-    id: 5,
+    id: 6,
     title: "Lenostube YouTube Royalty-free music",
     role: "WordPress Developer",
     description:
@@ -366,7 +366,7 @@ export const PROJECTS = [
     year: "2024",
   },
   {
-    id: 6,
+    id: 7,
     title: "AdStage WordPress website tools",
     role: "WordPress Developer",
     description:
@@ -388,7 +388,7 @@ export const PROJECTS = [
     year: "2024",
   },
   {
-    id: 7,
+    id: 8,
     title: "SaveYT",
     role: "Full-stack Developer",
     description:
@@ -400,7 +400,7 @@ export const PROJECTS = [
     year: "2024",
   },
   {
-    id: 8,
+    id: 9,
     title: "Guesser",
     role: "Front-end Developer",
     description: "A simple number guessing game",
@@ -411,7 +411,7 @@ export const PROJECTS = [
     year: "2023",
   },
   {
-    id: 9,
+    id: 10,
     title: "Weather-App",
     role: "Backend Developer",
     description:
