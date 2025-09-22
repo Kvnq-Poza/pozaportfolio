@@ -222,9 +222,11 @@ export const PROJECTS = [
     description:
       "FreeLikes is a modern web application that helps users increase their social media engagement through authentic interactions. Built with Next.js, Prisma, and MySQL, it provides a seamless experience for managing social media growth services.",
     features: [
-      "Authentication (social login)",
-      "Service dashboard",
-      "Analytics",
+      "Authentication System: Secure social login",
+      "Service Dashboard: Intuitive interface to manage social media growth services",
+      "Engagement Analytics: Track your growth and engagement metrics",
+      "Responsive Design: Optimized for both desktop and mobile devices",
+      "Dark/Light Mode: Choose your preferred visual theme",
     ],
     architecture: [
       "Frontend: Next.js 15 with React and TypeScript",
@@ -240,8 +242,11 @@ export const PROJECTS = [
       "TypeScript",
       "Python",
       "MariaDB",
-      "Tailwind",
       "Prisma",
+      "MySQL",
+      "Tailwind CSS",
+      "Docker",
+      "NextAuth.js",
     ],
     liveUrl: "https://freelikes.org/",
     featured: true,
