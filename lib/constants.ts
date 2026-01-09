@@ -92,48 +92,59 @@ export const SKILLS = [
 ];
 
 export const POZA_DATA = {
-  name: "Poza",
-  role: "Fullstack Developer",
-  experience: "3+ years",
+  name: "James Alaribe",
+  alias: "Poza",
+  role: "Full-Stack developer",
+  experience: "4+ years",
   available: true,
   professional_summary:
-    "Full-stack developer with expertise in Python, Django JavaScript, and React. Blending a background in graphic design with strong backend and database skills to build scalable, high-performance applications. Passionate about creating modern, interactive user experiences from concept to deployment.",
+    "Full-stack developer specializing in building scalable SaaS platforms, analytics dashboards, and real-time web applications. Experienced in designing, developing, and deploying modern Next.js and React systems with strong focus on performance, data visualization, authentication, accessibility compliance, and long-term maintainability.",
   technical_skills: [
     {
       skill: "Frontend",
       skill_list: [
-        "HTML & CSS",
+        "HTML5",
+        "CSS3",
         "JavaScript",
+        "TypeScript",
         "React",
         "Next.js",
-        "TypeScript",
         "Tailwind CSS",
         "Framer Motion",
-        "Redux",
+        "Accessibility (WCAG)",
       ],
     },
     {
       skill: "Backend",
       skill_list: [
-        "Python",
         "Node.js",
-        "Express",
-        "FastAPI",
-        "Supabase",
+        "Next.js API Routes",
+        "Python",
         "PHP",
+        "REST APIs",
+        "WebSockets",
+        "Supabase",
+        "Prisma",
       ],
     },
     {
       skill: "DevOps",
-      skill_list: ["Git", "Docker", "Vercel", "CI/CD", "Netlify"],
+      skill_list: ["Docker", "Git", "CI/CD", "Vercel", "Docker Compose"],
     },
     {
       skill: "Database",
-      skill_list: ["MySQL", "MongoDB", "Redis"],
+      skill_list: ["MySQL", "Supabase", "IndexedDB", "Prisma ORM"],
     },
     {
-      skill: "Tools & Others",
-      skill_list: ["VS Code", "Dockerization", "Contentful"],
+      skill: "Tools & Systems",
+      skill_list: [
+        "PWA Architecture",
+        "Offline-First Systems",
+        "Data Visualization",
+        "Authentication (NextAuth)",
+        "Real-Time DOM Monitoring",
+        "Custom Rules Engines",
+      ],
     },
   ],
 };
