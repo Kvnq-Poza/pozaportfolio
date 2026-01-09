@@ -2,6 +2,7 @@ import type React from "react";
 import type { Metadata } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
+import "highlight.js/styles/github-dark.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { GlobalStateProvider } from "@/contexts/global-context";
 import { Navigation } from "@/components/navigation";
@@ -34,7 +35,11 @@ export const metadata: Metadata = {
     "typescript",
   ],
   authors: [{ name: "Poza" }],
-  viewport: "width=device-width, initial-scale=1",
+};
+
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
 };
 
 export default function RootLayout({
