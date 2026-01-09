@@ -5,7 +5,7 @@ excerpt: "A brief introduction to my blog."
 tags: ["Personal", "Welcome"]
 ---
 
-# Welcome to my blog!
+# Where it begins!
 
 This is the first post on my blog. I'm excited to share my journey and thoughts with you directly using this medium.
 
