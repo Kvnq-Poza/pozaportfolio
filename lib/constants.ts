@@ -357,7 +357,7 @@ export const PROJECTS = [
       "Contentful",
     ],
     liveUrl: "https://freetools.org",
-    featured: false,
+    featured: true,
     year: "2024",
   },
   {
