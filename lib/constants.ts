@@ -220,7 +220,7 @@ export const STORY = {
   heading: "> My Journey",
   paragraphs: [
     "My coding journey began in 2019 with Java and Python tutorials on YouTube. I was fascinated by how simple logic could produce desired results. Taking a very long break, I continued my journey in 2022 and continued learning Python through YouTube and FreeCodeCamp and discovered Django's power to build web apps. This caught my attention, as someone with a background in graphic design, this was a way to create modern designs and have it be functions, turning creative ideas into an interactive digital experience.",
-    "I expanded into JavaScript with a focus on fullstack development. Over the years, I've developed expertise in React ecosystems, Python backends, and database design. I thrive on building scalable, performant applications from concept to deployment.",
+    "I expanded into JavaScript with a focus on fullstack development. Over the years, I've developed expertise in React ecosystems, backend, system and database design. I thrive on building scalable, performant applications from concept to deployment.",
     "When not coding, I explore new technologies, read a book, or drive.",
   ],
 };
