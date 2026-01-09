@@ -92,7 +92,7 @@ export default function HomePage() {
                       <span className="text-[var(--text-secondary)]">
                         Name:
                       </span>{" "}
-                      {POZA_DATA.name}
+                      {POZA_DATA.alias || POZA_DATA.name}
                     </p>
                     <p className="text-[var(--text-color)] text-xs lg:text-base">
                       <span className="text-[var(--text-secondary)]">
