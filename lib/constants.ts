@@ -5,7 +5,7 @@ export const NAV_ITEMS = [
   { href: "/projects", label: "Projects" },
   { href: "/resume", label: "Resume" },
   { href: "/contact", label: "Contact" },
-  { href: "https://medium.com/@kvnqpoza", label: "Blog", external: true },
+  { href: "/blog", label: "Blog" },
 ];
 
 export const EGGS = {
