@@ -61,6 +61,8 @@ export const UI = {
   hintPulseDurationMs: 2000,
 };
 
+export const SEARCH_TAGS = 5;
+
 export const SCOREBOARD = {
   // Layout
   desktopOffsetX: 20, // px
