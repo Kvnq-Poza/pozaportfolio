@@ -150,7 +150,7 @@ export async function POST(request: NextRequest) {
               </p>
               
               <ul style="color: #333; font-size: 16px; line-height: 1.6; margin-bottom: 25px;">
-                <li style="margin-bottom: 8px;">Check out my <a href="https://poza.dev/projects" style="color: #007bff; text-decoration: none;">latest projects</a></li>
+                <li style="margin-bottom: 8px;">Check out my <a href="https://pozadev.vercel.app/projects" style="color: #007bff; text-decoration: none;">latest projects</a></li>
                 <li style="margin-bottom: 8px;">Connect with me on <a href="https://x.com/KvnqPoza" style="color: #007bff; text-decoration: none;">Twitter</a></li>
                 <li style="margin-bottom: 8px;">Follow my journey on <a href="https://github.com/Kvnq-Poza" style="color: #007bff; text-decoration: none;">GitHub</a></li>
               </ul>
