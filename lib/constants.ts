@@ -96,11 +96,11 @@ export const SKILLS = [
 export const POZA_DATA = {
   name: "James Alaribe",
   alias: "Poza",
-  role: "Full-Stack developer",
+  role: "Software Developer",
   experience: "4+ years",
   available: true,
   professional_summary:
-    "Full-stack developer specializing in building scalable SaaS platforms, analytics dashboards, and real-time web applications. Experienced in designing, developing, and deploying modern Next.js and React systems with strong focus on performance, data visualization, authentication, accessibility compliance, and long-term maintainability.",
+    "Software developer specializing in building scalable SaaS platforms, analytics dashboards, and real-time web applications. Experienced in designing, developing, and deploying modern Next.js and React systems with strong focus on performance, data visualization, authentication, accessibility compliance, and long-term maintainability.",
   technical_skills: [
     {
       skill: "Frontend",
@@ -231,7 +231,7 @@ export const PROJECTS = [
   {
     id: 1,
     title: "Freelikes App",
-    role: "Full-stack Developer",
+    role: "Software Developer",
     description:
       "FreeLikes is a modern web application that helps users increase their social media engagement through authentic interactions. Built with Next.js, Prisma, and MySQL, it provides a seamless experience for managing social media growth services.",
     features: [
@@ -357,7 +357,7 @@ export const PROJECTS = [
   {
     id: 5,
     title: "Freetools App",
-    role: "Full-stack Developer",
+    role: "Software Developer",
     description:
       "A free tool library with a wide range of online tools aimed at boosting productivity and simplifing tasks",
     image: "/assets/freetools-screen.png",
@@ -420,7 +420,7 @@ export const PROJECTS = [
   {
     id: 8,
     title: "SaveYT",
-    role: "Full-stack Developer",
+    role: "Software Developer",
     description:
       "A downloader app which enables easy downloads of YouTube videos into mp3 and mp4 formats",
     image: "/assets/saveyt-screen.png",
@@ -456,7 +456,7 @@ export const PROJECTS = [
   {
     id: 11,
     title: "RexPayments",
-    role: "Full-Stack Laravel Engineer",
+    role: "Software Laravel Engineer",
     description:
       "A Stripe-powered payment processing platform that enables merchants to collect payments, issue branded receipts, generate shareable payment links, and monitor system health with automated email logging and delivery monitoring.",
     features: [

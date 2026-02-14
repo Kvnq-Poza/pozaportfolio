@@ -158,7 +158,7 @@ export async function POST(request: NextRequest) {
               <p style="color: #333; font-size: 16px; line-height: 1.6; margin-bottom: 0;">
                 Best regards,<br>
                 <strong style="color: #007bff;">Poza</strong><br>
-                <span style="color: #6c757d; font-size: 14px;">Full Stack Developer</span>
+                <span style="color: #6c757d; font-size: 14px;">Software Developer</span>
               </p>
             </div>
             

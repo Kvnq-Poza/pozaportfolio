@@ -153,7 +153,7 @@ export default function ResumePage() {
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.4 }}
               >
-                Full Stack Developer
+                Software Developer
               </motion.p>
 
               {/* Contact Info */}

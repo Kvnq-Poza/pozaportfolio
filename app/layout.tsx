@@ -23,13 +23,13 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Poza - Full Stack Developer",
+  title: "Poza - Software Developer",
   description:
-    "Portfolio of a passionate full-stack developer specializing in modern web technologies",
+    "Portfolio of an engineer who helps SaaS startups ship production-ready, scalable backends",
   keywords: [
     "developer",
     "portfolio",
-    "full-stack",
+    "software developer",
     "react",
     "nextjs",
     "typescript",
