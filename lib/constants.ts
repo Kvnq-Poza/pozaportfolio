@@ -230,6 +230,38 @@ export const STORY = {
 export const PROJECTS = [
   {
     id: 1,
+    title: "Ogrite",
+    role: "Software Developer",
+    description:
+      "A deterministic visual artifact compiler for Open Graph images. Ogrite converts application routes into static, optimized OG images at build time, treating visuals as assets in the build pipeline.",
+    features: [
+      "Route Discovery: Manual, Sitemap, and Filesystem strategies",
+      "Programmatic API: Full build control for automation",
+      "CLI Tools: Generate, watch, check, and clean commands",
+      "High Performance: Parallel rendering using Playwright",
+      "Post-render Optimization: Automatic compression and format conversion (WebP/PNG)",
+    ],
+    architecture: [
+      "Rendering Engine: Playwright (Chromium)",
+      "Image Processing: Sharp",
+      "Discovery Logic: Sitemap parser and Filesystem scanner",
+      "CLI: Custom CLI built with TypeScript",
+    ],
+    image: "/assets/ogrite-screen.webp",
+    technologies: [
+      "TypeScript",
+      "Node.js",
+      "Playwright",
+      "Sharp",
+      "CLI",
+      "Open Graph",
+    ],
+    liveUrl: "https://ogrite.vercel.app/",
+    featured: true,
+    year: "2026",
+  },
+  {
+    id: 2,
     title: "Freelikes App",
     role: "Software Developer",
     description:
@@ -266,7 +298,7 @@ export const PROJECTS = [
     year: "2025",
   },
   {
-    id: 2,
+    id: 3,
     title: "Trakka App",
     role: "Developer",
     description:
@@ -307,7 +339,7 @@ export const PROJECTS = [
     year: "2025",
   },
   {
-    id: 3,
+    id: 4,
     title: "A11y Live",
     role: "Developer",
     description:
@@ -336,7 +368,7 @@ export const PROJECTS = [
     year: "2025",
   },
   {
-    id: 4,
+    id: 5,
     title: "YouTube Downloader API",
     role: "Backend Developer",
     description:
@@ -355,18 +387,26 @@ export const PROJECTS = [
     year: "2025",
   },
   {
-    id: 5,
+    id: 6,
     title: "Freetools App",
     role: "Software Developer",
     description:
-      "A free tool library with a wide range of online tools aimed at boosting productivity and simplifing tasks",
+      "A free tool library with over 160+ tools, ranging from 12 categories, a wide range of online tools aimed at boosting productivity and simplifing tasks",
+    features: ["Over 160+ tools", "12 categories"],
+    architecture: [
+      "Frontend: Next.js with React and TypeScript",
+      "Backend: Next.js API routes with server components",
+      "Database: Postgres",
+      "Styling: Tailwind CSS",
+    ],
     image: "/assets/freetools-screen.png",
     technologies: [
-      "Javascript",
+      "Next.js",
+      "TypeScript",
+      "Postgres",
+      "Tailwind CSS",
       "Node.JS",
       "Python",
-      "HTML5",
-      "CSS3",
       "Contentful",
     ],
     liveUrl: "https://freetools.org",
@@ -374,7 +414,68 @@ export const PROJECTS = [
     year: "2024",
   },
   {
-    id: 6,
+    id: 7,
+    title: "TubeStats",
+    role: "Software Developer",
+    description:
+      "A comprehensive Next.js analytics platform for YouTube creators that tracks channel performance, engagement metrics, and growth trends. Contributed from where the previous developer stopped, implementing advanced tracking features and optimizing the architecture for performance.",
+    features: [
+      "Real-time YouTube Data Tracking",
+      "Interactive Analytics Dashboard",
+      "Growth Forecasting & Predictions",
+      "Automated Scheduled Reporting",
+      "Admin API Key & User Management",
+    ],
+    architecture: [
+      "Framework: Next.js 15 (App Router)",
+      "Database: MySQL with Prisma ORM",
+      "State Management: Redux & Redux Saga",
+      "Styling: Tailwind CSS & Ant Design",
+      "Monitoring: Custom Cron System",
+    ],
+    image: "/assets/tubestats-screen.png",
+    technologies: [
+      "Next.js",
+      "TypeScript",
+      "MySQL",
+      "Prisma",
+      "Tailwind CSS",
+      "Ant Design",
+      "Redux",
+      "Docker",
+      "YouTube API",
+    ],
+    liveUrl: "https://tubestats.io",
+    featured: true,
+    year: "2025",
+  },
+  {
+    id: 8,
+    title: "Pathfinder",
+    role: "Software Developer",
+    description:
+      "A zero-dependency, high-performance visual tool for mapping, querying, and generating access logic for deeply nested JSON structures. Optimized for massive datasets with a custom Virtual Scroll engine.",
+    features: [
+      "High Performance: 100,000+ nodes at 60fps",
+      "Multi-format Path Generation: JSONPath, Optional Chaining, etc.",
+      "TypeScript Schema Generation: Automatic interface inference",
+      "Live Search: Instant filtering across keys and values",
+      "Privacy First: 100% client-side processing",
+    ],
+    architecture: [
+      "Frontend: Vanilla JavaScript (ES Modules)",
+      "Engine: Custom Virtual Scroll & Tree Flattening logic",
+      "Styling: Modular CSS system",
+      "Persistence: SessionStorage for state persistence",
+    ],
+    image: "/assets/pathfinder-screen.png",
+    technologies: ["JavaScript", "HTML5", "CSS3", "Virtual Scroll", "JSON"],
+    liveUrl: "https://pathfinder.js.org/",
+    featured: true,
+    year: "2026",
+  },
+  {
+    id: 9,
     title: "Lenostube YouTube Royalty-free music",
     role: "WordPress Developer",
     description:
@@ -396,7 +497,7 @@ export const PROJECTS = [
     year: "2024",
   },
   {
-    id: 7,
+    id: 10,
     title: "AdStage WordPress website tools",
     role: "WordPress Developer",
     description:
@@ -418,7 +519,7 @@ export const PROJECTS = [
     year: "2024",
   },
   {
-    id: 8,
+    id: 11,
     title: "SaveYT",
     role: "Software Developer",
     description:
@@ -430,7 +531,7 @@ export const PROJECTS = [
     year: "2024",
   },
   {
-    id: 9,
+    id: 12,
     title: "Guesser",
     role: "Front-end Developer",
     description: "A simple number guessing game",
@@ -441,7 +542,7 @@ export const PROJECTS = [
     year: "2023",
   },
   {
-    id: 10,
+    id: 13,
     title: "Weather-App",
     role: "Backend Developer",
     description:
@@ -454,7 +555,7 @@ export const PROJECTS = [
     year: "2022",
   },
   {
-    id: 11,
+    id: 14,
     title: "RexPayments",
     role: "Software Laravel Engineer",
     description:
