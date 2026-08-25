@@ -229,6 +229,47 @@ export const STORY = {
 
 export const PROJECTS = [
   {
+    id: 17,
+    title: "PressFeed",
+    role: "Software Developer",
+    description:
+      "A press release distribution platform built as four independently deployable apps over one Postgres database. Operators curate RSS feeds; releases are imported, cleaned and re-encoded, then published on each publisher's own site through CNAME hosting, a WordPress plugin, or a direct API build. Every release carries a beacon, so readership is measured in the visitor's browser rather than self-reported by the publisher.",
+    features: [
+      "Four isolated surfaces: publisher console, operator console, public API, marketing site",
+      "Database-enforced tenant isolation via Postgres row-level security (fails closed)",
+      "Revocable JTI-backed sessions with per-surface lifetimes and per-app cookie binding",
+      "Three integration paths: CNAME hosting, WordPress plugin, or direct API",
+      "Independently measured impressions/clicks via an SPA-aware browser beacon",
+      "Canary checks that fetch published pages back to confirm the beacon is intact",
+      "Signed-challenge and CNAME domain verification on a randomized re-check schedule",
+      "Email OTP verification, optional TOTP 2FA, and disposable-address rejection at signup",
+      "Redis-backed sliding-window rate limiting across every surface, failing open",
+      "RSS importer with content cleaning and a responsive image ladder",
+    ],
+    architecture: [
+      "Monorepo: npm workspaces — 4 Next.js 16 apps + shared ui/core/auth/db/mail packages",
+      "Database: PostgreSQL via Prisma with FORCE ROW LEVEL SECURITY and least-privilege roles",
+      "Auth: Auth.js (NextAuth v5) factory with per-app sessions backed by a sessions table",
+      "Caching/Limits: Redis for atomic sliding-window rate limiting across replicas",
+      "Email: nodemailer with one branded transport and dedupe via notification logs",
+      "Infrastructure: fully containerised — Docker + Compose, Next.js standalone output",
+    ],
+    image: "/assets/pressfeed-screen.png",
+    technologies: [
+      "Next.js",
+      "TypeScript",
+      "PostgreSQL",
+      "Prisma",
+      "Redis",
+      "Auth.js",
+      "Tailwind CSS",
+      "Docker",
+    ],
+    liveUrl: "https://pressfeed.io",
+    featured: true,
+    year: "2026",
+  },
+  {
     id: 16,
     title: "ChainPayments",
     role: "Software Developer",
