@@ -35,7 +35,7 @@ export default function AboutPage() {
         className="min-h-screen bg-[var(--bg-color)] text-[var(--text-color)]"
         style={{ fontFamily: "var(--font-family)" }}
       >
-        <main className="container mx-auto px-4 py-20 lg:py-24">
+        <div className="container mx-auto px-4 py-20 lg:py-24">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
@@ -229,7 +229,7 @@ export default function AboutPage() {
               </div>
             </motion.div>
           </motion.div>
-        </main>
+        </div>
       </div>
     </>
   );
