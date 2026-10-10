@@ -31,7 +31,7 @@ Not “harder.”
 Not “more competitive.”  
 Gone.
 
-A lot of the small, boring, repetitive tasks that used to train junior developers are now eaten by AI tools. The stuff you would have cut your teeth on — scaffolding, CRUD boilerplate, tests, documentation, refactors — those are now _autocomplete problems_.
+A lot of the small, boring, repetitive tasks that used to train junior developers are now eaten by AI tools. The stuff you would have cut your teeth on (scaffolding, CRUD boilerplate, tests, documentation, refactors) are now _autocomplete problems_.
 
 So companies quietly raised the bar without announcing it.
 
@@ -103,18 +103,18 @@ Debugging human and AI mistakes.
 Designing for failure.  
 Explaining technical decisions to non-technical people.
 
-These are the skills AI can’t automate well — and they are the skills that actually get you hired now.
+These are the skills AI can’t automate well, and they are the skills that actually get you hired now.
 
 ## What actually works now
 
 The new path looks less pretty, but it’s real:
 
 - Learn the fundamentals deeply (not quickly).
-- Build fewer projects — but make them messy, real, and painful.
+- Build fewer projects, but make them messy, real, and painful.
 - Break your own software and fix it.
 - Write documentation like someone else has to maintain it.
 - Learn to explain your decisions in plain English.
-- Use AI — but don’t let it think for you.
+- Use AI, but don’t let it think for you.
 
 Your portfolio and projects shouldn't look stock, they should actually display your skillset, what makes you unique and not just boilerplate projects.
 
