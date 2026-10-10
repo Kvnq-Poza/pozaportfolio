@@ -22,7 +22,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { CustomCursor } from "@/components/custom-cursor";
 import { useGlobalState } from "@/contexts/global-context";
-import { EGGS, POZA_DATA } from "@/lib/constants";
+import { EGGS, POZA_DATA, SITE } from "@/lib/constants";
 
 export default function ResumePage() {
   const { addEasterEgg } = useGlobalState();
@@ -145,7 +145,10 @@ export default function ResumePage() {
                 animate={{ scale: 1 }}
                 transition={{ delay: 0.3 }}
               >
-                Poza
+                {POZA_DATA.name}{" "}
+                <span className="text-[var(--text-secondary)]">
+                  ({POZA_DATA.alias})
+                </span>
               </motion.h1>
               <motion.p
                 className="text-xl text-[var(--text-secondary)] mb-4"
@@ -169,7 +172,9 @@ export default function ResumePage() {
                 </div>
                 <div className="flex items-center gap-1">
                   <MapPin className="h-4 w-4" aria-hidden="true" />
-                  <span>Lagos, NG</span>
+                  <span>
+                    {POZA_DATA.location} · {POZA_DATA.remote}
+                  </span>
                 </div>
               </motion.div>
 
@@ -181,14 +186,18 @@ export default function ResumePage() {
                 transition={{ delay: 0.6 }}
               >
                 <a
-                  href="#"
+                  href={SITE.socials.github}
+                  target="_blank"
+                  rel="noopener noreferrer me"
                   className="text-[var(--text-secondary)] hover:text-[var(--text-color)] transition-colors"
                   aria-label="GitHub"
                 >
                   <Github className="h-5 w-5" />
                 </a>
                 <a
-                  href="#"
+                  href={SITE.socials.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer me"
                   className="text-[var(--text-secondary)] hover:text-[var(--text-color)] transition-colors"
                   aria-label="LinkedIn"
                 >
