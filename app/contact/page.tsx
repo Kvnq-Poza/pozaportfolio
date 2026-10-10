@@ -106,7 +106,7 @@ export default function ContactPage() {
     {
       icon: MapPin,
       title: "Location",
-      value: "Lagos, NG",
+      value: `${POZA_DATA.location} (remote worldwide)`,
       action: () => {},
     },
   ];
