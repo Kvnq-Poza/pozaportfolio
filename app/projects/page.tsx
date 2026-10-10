@@ -59,15 +59,20 @@ export default function ProjectsPage() {
             animate={{ opacity: 1, y: 0 }}
             className="text-center mb-16"
           >
-            <h1
-              className="relative text-4xl lg:text-6xl font-bold text-[var(--text-color)] mb-4 cursor-pointer select-none inline-block outline-none focus:ring-2 focus:ring-[var(--primary-color)] focus:ring-offset-2 rounded-md"
-              onClick={triggerProjectsEgg}
-              onKeyDown={(e) => onKeyActivate(e, triggerProjectsEgg)}
-              aria-label="Tap to discover a surprise"
-              role="button"
-              tabIndex={0}
-            >
-              {"> My Projects"}
+            <h1 className="relative text-4xl lg:text-6xl font-bold text-[var(--text-color)] mb-4 inline-block">
+              <span
+                onClick={triggerProjectsEgg}
+                onKeyDown={(e) => onKeyActivate(e, triggerProjectsEgg)}
+                title="Tap to discover a surprise"
+                role="button"
+                tabIndex={0}
+                className="cursor-pointer select-none outline-none focus:ring-2 focus:ring-[var(--primary-color)] focus:ring-offset-2 rounded-md"
+              >
+                {"> My Projects"}
+              </span>
+              <span className="sr-only">
+                {": software development portfolio of James Alaribe (Poza)"}
+              </span>
               <Egg
                 className="absolute -top-3 -right-4 h-4 w-4 opacity-40 animate-pulse"
                 aria-hidden="true"
