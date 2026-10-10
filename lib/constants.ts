@@ -1,4 +1,54 @@
 // Centralized app constants to avoid magic numbers and keep things consistent
+
+// SEO: canonical origin, default metadata copy, and profiles used for JSON-LD `sameAs`
+export const SITE = {
+  url: (process.env.NEXT_PUBLIC_SITE_URL || "https://www.kvnqpoza.dev").replace(
+    /\/$/,
+    ""
+  ),
+  name: "James Alaribe (Poza)",
+  shortName: "Poza",
+  title: "James Alaribe (Poza) | Full-Stack Software Developer, Lagos",
+  description:
+    "James Alaribe (Poza) is a Lagos-based full-stack software developer working remotely with clients worldwide. 4+ years building scalable SaaS platforms, APIs and real-time web apps with Next.js, React, TypeScript, Node.js and PostgreSQL. Available for hire.",
+  location: {
+    city: "Lagos",
+    country: "Nigeria",
+    countryCode: "NG",
+  },
+  keywords: [
+    "James Alaribe",
+    "Poza",
+    "Kvnq Poza",
+    "full-stack developer",
+    "software developer",
+    "software engineer",
+    "Next.js developer",
+    "React developer",
+    "TypeScript developer",
+    "Node.js developer",
+    "backend developer",
+    "SaaS developer",
+    "freelance developer",
+    "remote developer",
+    "software developer Lagos",
+    "full-stack developer Lagos",
+    "Next.js developer Nigeria",
+    "React developer Nigeria",
+    "hire a developer",
+    "web developer portfolio",
+  ],
+  twitterHandle: "@KvnqPoza",
+  image: "/poza-moji-x.png",
+  socials: {
+    github: "https://github.com/Kvnq-Poza",
+    linkedin: "https://www.linkedin.com/in/kvnqpoza02344/",
+    x: "https://x.com/KvnqPoza",
+    instagram: "https://www.instagram.com/kvnq_poza/",
+    medium: "https://medium.com/@kvnqpoza",
+  },
+};
+
 export const NAV_ITEMS = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About" },
@@ -97,6 +147,8 @@ export const POZA_DATA = {
   name: "James Alaribe",
   alias: "Poza",
   role: "Software Developer",
+  location: "Lagos, Nigeria",
+  remote: "Remote, working worldwide",
   experience: "4+ years",
   available: true,
   professional_summary:
@@ -247,12 +299,12 @@ export const PROJECTS = [
       "RSS importer with content cleaning and a responsive image ladder",
     ],
     architecture: [
-      "Monorepo: npm workspaces — 4 Next.js 16 apps + shared ui/core/auth/db/mail packages",
+      "Monorepo: npm workspaces, 4 Next.js 16 apps + shared ui/core/auth/db/mail packages",
       "Database: PostgreSQL via Prisma with FORCE ROW LEVEL SECURITY and least-privilege roles",
       "Auth: Auth.js (NextAuth v5) factory with per-app sessions backed by a sessions table",
       "Caching/Limits: Redis for atomic sliding-window rate limiting across replicas",
       "Email: nodemailer with one branded transport and dedupe via notification logs",
-      "Infrastructure: fully containerised — Docker + Compose, Next.js standalone output",
+      "Infrastructure: fully containerised with Docker + Compose, Next.js standalone output",
     ],
     image: "/assets/pressfeed-screen.png",
     technologies: [
@@ -310,7 +362,7 @@ export const PROJECTS = [
     title: "TeleDesk",
     role: "Software Developer",
     description:
-      "A multi-tenant SaaS platform for Telegram support operations. Organizations sign up, add their own bots, invite their own staff, and operate in complete isolation from one another — all hosted on a single infrastructure managed by a platform superadmin.",
+      "A multi-tenant SaaS platform for Telegram support operations. Organizations sign up, add their own bots, invite their own staff, and operate in complete isolation from one another, all hosted on a single infrastructure managed by a platform superadmin.",
     features: [
       "Full multi-tenant architecture",
       "JWT + DB session revocation auth",
