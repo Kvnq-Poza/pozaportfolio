@@ -128,7 +128,7 @@ export function ThemeCustomizer() {
 
   return (
     <>
-      {/* Floating Settings Button — rounded square aligned above terminal with a gap */}
+      {/* Floating Settings Button: rounded square aligned above terminal with a gap */}
       <motion.div
         className="fixed z-50"
         style={{
