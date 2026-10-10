@@ -9,11 +9,21 @@ import {
   CardDescription,
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { JsonLd } from "@/components/json-ld";
+import { POZA_DATA, SITE } from "@/lib/constants";
+import {
+  absoluteUrl,
+  breadcrumbSchema,
+  graph,
+  PERSON_ID,
+  WEBSITE_ID,
+} from "@/lib/seo";
 
 export async function generateStaticParams() {
-  const paths = getAllPostSlugs();
-  return paths;
+  return getAllPostSlugs().map((p) => p.params);
 }
+
+export const dynamicParams = false;
 
 export async function generateMetadata({
   params,
@@ -23,9 +33,28 @@ export async function generateMetadata({
   const { slug } = await params;
   try {
     const postData = await getPostData(slug);
+    const path = `/blog/${slug}`;
     return {
-      title: `${postData.title} | Blog`,
+      title: postData.title,
       description: postData.excerpt,
+      keywords: postData.tags,
+      authors: [{ name: POZA_DATA.name, url: SITE.url }],
+      alternates: { canonical: path },
+      openGraph: {
+        type: "article",
+        url: path,
+        title: postData.title,
+        description: postData.excerpt,
+        publishedTime: postData.date,
+        modifiedTime: postData.updated || postData.date,
+        authors: [SITE.url],
+        tags: postData.tags,
+      },
+      twitter: {
+        card: "summary_large_image",
+        title: postData.title,
+        description: postData.excerpt,
+      },
     };
   } catch (e) {
     return {
@@ -59,8 +88,39 @@ export default async function Post({
     .filter((p) => p.tags.some((t) => postData.tags.includes(t)))
     .slice(0, 2);
 
+  const postUrl = absoluteUrl(`/blog/${slug}`);
+  const wordCount = (postData.contentHtml || "")
+    .replace(/<[^>]+>/g, " ")
+    .split(/\s+/)
+    .filter(Boolean).length;
+
   return (
     <div className="min-h-screen bg-background pt-24 pb-12">
+      <JsonLd
+        data={graph(
+          {
+            "@type": "BlogPosting",
+            "@id": `${postUrl}#article`,
+            mainEntityOfPage: postUrl,
+            url: postUrl,
+            headline: postData.title,
+            description: postData.excerpt,
+            image: `${postUrl}/opengraph-image`,
+            datePublished: postData.date,
+            dateModified: postData.updated || postData.date,
+            keywords: postData.tags.join(", "),
+            wordCount,
+            inLanguage: "en",
+            author: { "@id": PERSON_ID, name: POZA_DATA.name, url: SITE.url },
+            publisher: { "@id": PERSON_ID },
+            isPartOf: { "@id": WEBSITE_ID },
+          },
+          breadcrumbSchema([
+            { name: "Blog", path: "/blog" },
+            { name: postData.title, path: `/blog/${slug}` },
+          ])
+        )}
+      />
       <article className="container mx-auto px-4 max-w-3xl">
         <Button
           asChild
