@@ -50,12 +50,26 @@ const md = new MarkdownIt({
     },
   });
 
+// The post page renders the title as the only <h1>; demote markdown `#` headings to <h2>
+md.core.ruler.push("demote_h1", (state) => {
+  for (const token of state.tokens) {
+    if (
+      (token.type === "heading_open" || token.type === "heading_close") &&
+      token.tag === "h1"
+    ) {
+      token.tag = "h2";
+    }
+  }
+});
+
 export interface PostData {
   slug: string;
   title: string;
   date: string;
   excerpt: string;
   tags: string[];
+  // Optional frontmatter `updated: "YYYY-MM-DD"` feeds dateModified / og:modified_time
+  updated?: string;
   contentHtml?: string;
 }
 
