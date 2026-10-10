@@ -13,20 +13,20 @@ An interactive developer portfolio built with Next.js, Tailwind CSS, shadcn/ui, 
 
 ## Terminal Commands
 
-- help — Show available commands
-- clear — Clear the terminal
-- whoami — Display user information
-- ls — List directory contents
-- pwd — Print working directory
-- date — Show current date/time
-- echo — Echo text
-- cd — Change directory (navigate)
+- help: Show available commands
+- clear: Clear the terminal
+- whoami: Display user information
+- ls: List directory contents
+- pwd: Print working directory
+- date: Show current date/time
+- echo: Echo text
+- cd: Change directory (navigate)
   - Examples: cd /about, cd /projects, cd /resume, cd /contact, cd /secret
-- cat — Display file contents
+- cat: Display file contents
   - Examples: cat README.md
-- readme — Quick alias for cat README.md
-- history — Show command history
-- exit — Close the terminal
+- readme: Quick alias for cat README.md
+- history: Show command history
+- exit: Close the terminal
 
 Tip: Use Tab to autocomplete commands and paths.
 
