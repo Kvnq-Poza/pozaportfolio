@@ -1,5 +1,5 @@
 ---
-title: "Vanilla HTML vs Frameworks — How to Decide"
+title: "Vanilla HTML vs Frameworks: How to Decide"
 date: "2026-02-10"
 excerpt: "When plain HTML is enough, when frameworks actually help, and how to avoid choosing tools out of fear."
 tags: ["Frontend", "HTML", "Frameworks", "Web Development"]
@@ -7,11 +7,11 @@ tags: ["Frontend", "HTML", "Frameworks", "Web Development"]
 
 Hello once again. It’s been a while since my last post, but I’m back with another one.
 
-Today I want to talk about a topic that refuses to die in frontend development — a debate I’ve seen in job descriptions, interviews, and endless online arguments:
+Today I want to talk about a topic that refuses to die in frontend development, a debate I’ve seen in job descriptions, interviews, and endless online arguments:
 
 **Vanilla HTML vs Frameworks.**
 
-I’ve had to think about this a lot in my own journey: the pros, the cons, when to use each approach, when not to, and why there’s no universal “right” answer — even in 2026.
+I’ve had to think about this a lot in my own journey: the pros, the cons, when to use each approach, when not to, and why there’s no universal “right” answer, even in 2026.
 
 Let’s get into it.
 
@@ -47,7 +47,7 @@ It’s choosing **by habit** instead of by constraint.
 
 This needs to be said clearly.
 
-HTML, CSS, and a bit of JavaScript are not basic or beginner tech, JavaScript on its own is a powerful language which can be a headache to work with on large scale projects. They’re the foundation. Most websites and web apps on the internet still run on them — quietly, efficiently, and without drama.
+HTML, CSS, and a bit of JavaScript are not basic or beginner tech, JavaScript on its own is a powerful language which can be a headache to work with on large scale projects. They’re the foundation. Most websites and web apps on the internet still run on them, quietly, efficiently, and without drama.
 
 If your project is:
 
@@ -125,7 +125,7 @@ Tools don’t make projects scalable. Decisions do.
 
 ## Being boring actually works
 
-Starting simple is not laziness — it’s discipline.
+Starting simple is not laziness; it’s discipline.
 
 When I built my portfolio site, vanilla HTML, CSS, and JavaScript were enough. As I added forms, animations, and more complex interactions, the cost of maintaining everything manually increased. That’s when a framework made sense.
 
