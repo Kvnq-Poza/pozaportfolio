@@ -18,6 +18,17 @@ import {
 } from "lucide-react";
 import { useGlobalState } from "@/contexts/global-context";
 import { EGGS, UI, SKILLS, POZA_DATA } from "@/lib/constants";
+import { JsonLd } from "@/components/json-ld";
+import { absoluteUrl, graph, PERSON_ID, WEBSITE_ID } from "@/lib/seo";
+
+const profilePageSchema = graph({
+  "@type": "ProfilePage",
+  "@id": absoluteUrl("/#profile"),
+  url: absoluteUrl("/"),
+  name: `${POZA_DATA.name} (${POZA_DATA.alias}), ${POZA_DATA.role}`,
+  isPartOf: { "@id": WEBSITE_ID },
+  mainEntity: { "@id": PERSON_ID },
+});
 
 export default function HomePage() {
   const { addEasterEgg } = useGlobalState();
@@ -39,12 +50,13 @@ export default function HomePage() {
 
   return (
     <>
+      <JsonLd data={profilePageSchema} />
       <CustomCursor />
       <div
         className="min-h-screen bg-[var(--bg-color)] text-[var(--text-color)] overflow-hidden"
         style={{ fontFamily: "var(--font-family)" }}
       >
-        <main className="container mx-auto px-4 py-20">
+        <div className="container mx-auto px-4 py-20">
           <div className="grid lg:grid-cols-2 gap-6 lg:gap-12 items-center min-h-[80vh]">
             {/* Left Content */}
             <motion.div
@@ -58,17 +70,24 @@ export default function HomePage() {
                 transition={{ type: "spring", stiffness: 300 }}
               >
                 <motion.h1
-                  role="button"
-                  tabIndex={0}
-                  onClick={handleTitleClick}
-                  onKeyDown={(e) => onKeyActivate(e, handleTitleClick)}
-                  className="relative cursor-pointer select-none text-2xl md:text-4xl lg:text-7xl font-bold text-[var(--text-color)] outline-none focus:ring-2 focus:ring-[var(--primary-color)] focus:ring-offset-2 focus:ring-offset-transparent rounded-md"
+                  className="relative text-2xl md:text-4xl lg:text-7xl font-bold text-[var(--text-color)]"
                   initial={{ scale: 0.5 }}
                   animate={{ scale: 1 }}
                   transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
-                  aria-label="Tap to discover a surprise"
                 >
-                  {"> Hello World! 👋"}
+                  <span
+                    role="button"
+                    tabIndex={0}
+                    onClick={handleTitleClick}
+                    onKeyDown={(e) => onKeyActivate(e, handleTitleClick)}
+                    title="Tap to discover a surprise"
+                    className="cursor-pointer select-none outline-none focus:ring-2 focus:ring-[var(--primary-color)] focus:ring-offset-2 focus:ring-offset-transparent rounded-md"
+                  >
+                    {"> Hello World! 👋"}
+                  </span>
+                  <span className="sr-only">
+                    {` I'm ${POZA_DATA.name} (${POZA_DATA.alias}), a full-stack software developer.`}
+                  </span>
                   {/* Subtle egg hint for title */}
                   <span className="absolute -top-3 -right-3">
                     <Egg
@@ -99,6 +118,12 @@ export default function HomePage() {
                         Role:
                       </span>{" "}
                       {POZA_DATA.role}
+                    </p>
+                    <p className="text-[var(--text-color)] text-xs lg:text-base">
+                      <span className="text-[var(--text-secondary)]">
+                        Location:
+                      </span>{" "}
+                      {POZA_DATA.location} ({POZA_DATA.remote})
                     </p>
                     <p className="text-[var(--text-color)] text-xs lg:text-base">
                       <span className="text-[var(--text-secondary)]">
@@ -177,11 +202,7 @@ export default function HomePage() {
                     {"./contact"}
                   </Button>
                 </Link>
-                <a
-                  href="https://medium.com/@kvnqpoza"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
+                <Link href="/blog">
                   <Button
                     size="lg"
                     variant="outline"
@@ -190,7 +211,7 @@ export default function HomePage() {
                     <BookOpen className="mr-2 h-3 w-3 lg:h-4 lg:w-4" />
                     {"./blog"}
                   </Button>
-                </a>
+                </Link>
               </motion.div>
 
               {/* Social Links */}
@@ -260,7 +281,8 @@ export default function HomePage() {
 
                     <img
                       src="/poza-moji-x.png"
-                      alt="Poza - Fullstack Developer"
+                      alt={`${POZA_DATA.name} (${POZA_DATA.alias}), full-stack software developer`}
+                      fetchPriority="high"
                       className="w-full h-[calc(100%-32px)] lg:h-[calc(100%-40px)] object-cover transition-transform duration-300 group-hover:scale-110"
                     />
 
@@ -291,7 +313,7 @@ export default function HomePage() {
               </motion.div>
             </motion.div>
           </div>
-        </main>
+        </div>
       </div>
     </>
   );
