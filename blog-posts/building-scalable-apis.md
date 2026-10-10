@@ -280,7 +280,7 @@ describe("User API", () => {
 
 Not doing these is how “it worked locally” becomes a lifestyle.
 
-> “Premature optimization is the root of all evil.” — Donald Knuth
+> “Premature optimization is the root of all evil.” (Donald Knuth)
 
 Build it simple. Measure it. Then make it faster.
 
