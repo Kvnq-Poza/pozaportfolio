@@ -225,7 +225,7 @@ const SecretPage = () => {
     <>
       <CustomCursor />
       <div className="min-h-screen overflow-hidden transition-all duration-300" style={{ backgroundColor: "var(--bg-color)", color: "var(--text-color)", fontFamily: "var(--font-family)" }}>
-        <main className="container mx-auto px-4 py-20 lg:py-24">
+        <div className="container mx-auto px-4 py-20 lg:py-24">
           <motion.div initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} className="space-y-8 lg:space-y-12">
             {/* Header */}
             <div className="text-center space-y-4">
@@ -381,7 +381,7 @@ const SecretPage = () => {
               </div>
             </div>
           </motion.div>
-        </main>
+        </div>
       </div>
     </>
   )
