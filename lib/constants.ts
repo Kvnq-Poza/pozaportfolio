@@ -49,7 +49,14 @@ export const SITE = {
   },
 };
 
-export const NAV_ITEMS = [
+export type NavItem = {
+  href: string;
+  label: string;
+  // Opens in a new tab as a plain anchor instead of client-side navigation
+  external?: boolean;
+};
+
+export const NAV_ITEMS: NavItem[] = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About" },
   { href: "/projects", label: "Projects" },
