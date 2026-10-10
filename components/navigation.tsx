@@ -3,25 +3,20 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { Menu, X, TerminalIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { NAV_ITEMS } from "@/lib/constants";
 
+const MotionLink = motion.create(Link);
+
 export function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
-  const router = useRouter();
   const menuRef = useRef<HTMLDivElement>(null);
 
-  const handleNavigation = (href: string) => {
-    if (!href.startsWith("http")) {
-      router.prefetch(href);
-      router.push(href);
-    }
-    // Close mobile menu after navigation
-    setIsOpen(false);
-  };
+  // Close mobile menu after navigation
+  const handleNavigation = () => setIsOpen(false);
 
   const handleMenuToggle = () => {
     setIsOpen(!isOpen);
@@ -105,9 +100,11 @@ export function Navigation() {
                   ./{item.label.toLowerCase()}
                 </a>
               ) : (
-                <button
+                <Link
                   key={item.href}
-                  onClick={() => handleNavigation(item.href)}
+                  href={item.href}
+                  onClick={handleNavigation}
+                  aria-current={pathname === item.href ? "page" : undefined}
                   className={`relative text-sm font-mono transition-colors hover:text-[var(--primary-color)] ${
                     pathname === item.href
                       ? "text-[var(--primary-color)]"
@@ -121,7 +118,7 @@ export function Navigation() {
                       className="absolute -bottom-1 left-0 right-0 h-0.5 bg-[var(--primary-color)]"
                     />
                   )}
-                </button>
+                </Link>
               )
             )}
           </div>
@@ -192,9 +189,11 @@ export function Navigation() {
                     ./{item.label.toLowerCase()}
                   </motion.a>
                 ) : (
-                  <motion.button
+                  <MotionLink
                     key={item.href}
-                    onClick={() => handleNavigation(item.href)}
+                    href={item.href}
+                    onClick={handleNavigation}
+                    aria-current={pathname === item.href ? "page" : undefined}
                     className={`block w-full text-left text-sm font-mono transition-colors hover:text-[var(--primary-color)] py-2 ${
                       pathname === item.href
                         ? "text-[var(--primary-color)]"
@@ -213,7 +212,7 @@ export function Navigation() {
                         transition={{ delay: 0.2 }}
                       />
                     )}
-                  </motion.button>
+                  </MotionLink>
                 )
               )}
             </div>
