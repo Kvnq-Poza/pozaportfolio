@@ -3,6 +3,7 @@ title: "Welcome to my blog!"
 date: "2026-01-09"
 excerpt: "A brief introduction to my blog."
 tags: ["Personal", "Welcome"]
+noindex: true
 ---
 
 # Where it begins!
