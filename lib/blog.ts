@@ -70,6 +70,9 @@ export interface PostData {
   tags: string[];
   // Optional frontmatter `updated: "YYYY-MM-DD"` feeds dateModified / og:modified_time
   updated?: string;
+  // Optional frontmatter `noindex: true` keeps a published post out of search
+  // results and the sitemap (for thin posts like intros)
+  noindex?: boolean;
   contentHtml?: string;
 }
 
