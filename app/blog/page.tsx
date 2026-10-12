@@ -35,13 +35,15 @@ export default function BlogPage() {
             name: "Blog by James Alaribe (Poza)",
             description,
             author: { "@id": PERSON_ID },
-            blogPost: allPostsData.map((post) => ({
-              "@type": "BlogPosting",
-              headline: post.title,
-              url: absoluteUrl(`/blog/${post.slug}`),
-              datePublished: post.date,
-              author: { "@id": PERSON_ID },
-            })),
+            blogPost: allPostsData
+              .filter((post) => !post.noindex)
+              .map((post) => ({
+                "@type": "BlogPosting",
+                headline: post.title,
+                url: absoluteUrl(`/blog/${post.slug}`),
+                datePublished: post.date,
+                author: { "@id": PERSON_ID },
+              })),
           },
           breadcrumbSchema([{ name: "Blog", path: "/blog" }])
         )}
