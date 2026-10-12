@@ -3,6 +3,8 @@ import { POZA_DATA, SITE } from "@/lib/constants";
 import { absoluteUrl } from "@/lib/seo";
 
 export const dynamic = "force-static";
+// Picks up scheduled posts on their publish date (see lib/blog.ts)
+export const revalidate = 3600;
 
 const escapeXml = (value: string) =>
   value

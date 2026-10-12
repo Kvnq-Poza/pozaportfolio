@@ -22,6 +22,9 @@ export const metadata: Metadata = {
   },
 };
 
+// Picks up scheduled posts on their publish date (see lib/blog.ts)
+export const revalidate = 3600;
+
 export default function BlogPage() {
   const allPostsData = getSortedPostsData();
   return (

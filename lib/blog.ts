@@ -50,6 +50,49 @@ const md = new MarkdownIt({
     },
   });
 
+// Images: lazy-load everything, and promote an image that sits alone in a
+// paragraph to a <figure>. Its markdown title becomes the caption:
+//   ![Alt text](/blog/my-post/shot.png "Caption shown under the image")
+md.core.ruler.push("figures", (state) => {
+  const tokens = state.tokens;
+  for (let i = 1; i < tokens.length - 1; i++) {
+    const inline = tokens[i];
+    if (
+      inline.type !== "inline" ||
+      tokens[i - 1].type !== "paragraph_open" ||
+      tokens[i + 1].type !== "paragraph_close"
+    ) {
+      continue;
+    }
+    const children = (inline.children || []).filter(
+      (t) => !(t.type === "text" && t.content.trim() === "")
+    );
+    if (children.length !== 1 || children[0].type !== "image") continue;
+
+    tokens[i - 1].tag = "figure";
+    tokens[i - 1].attrJoin("class", "md-figure");
+    tokens[i + 1].tag = "figure";
+    children[0].meta = { ...(children[0].meta || {}), figure: true };
+  }
+});
+
+md.renderer.rules.image = (tokens, idx, options, env, self) => {
+  const token = tokens[idx];
+  const caption = token.attrGet("title");
+  token.attrSet("alt", self.renderInlineAsText(token.children || [], options, env));
+  token.attrSet("loading", "lazy");
+  token.attrSet("decoding", "async");
+
+  if (token.meta?.figure && caption) {
+    // The caption replaces the title tooltip
+    token.attrs = (token.attrs || []).filter(([name]) => name !== "title");
+    return `<img${self.renderAttrs(token)}><figcaption>${md.utils.escapeHtml(
+      caption
+    )}</figcaption>`;
+  }
+  return `<img${self.renderAttrs(token)}>`;
+};
+
 // The post page renders the title as the only <h1>; demote markdown `#` headings to <h2>
 md.core.ruler.push("demote_h1", (state) => {
   for (const token of state.tokens) {
@@ -70,36 +113,68 @@ export interface PostData {
   tags: string[];
   // Optional frontmatter `updated: "YYYY-MM-DD"` feeds dateModified / og:modified_time
   updated?: string;
+  // Optional frontmatter `cover` (a path under /public) and `coverAlt`
+  cover?: string;
+  coverAlt?: string;
+  // Optional frontmatter `draft: true` keeps a post out of production entirely
+  draft?: boolean;
   // Optional frontmatter `noindex: true` keeps a published post out of search
   // results and the sitemap (for thin posts like intros)
   noindex?: boolean;
+  // Derived: true when the post is a draft or dated in the future
+  scheduled: boolean;
   contentHtml?: string;
 }
 
-export function getSortedPostsData(): PostData[] {
+// Posts go live on their `date`, in Lagos time. The blog routes, feed and
+// sitemap revalidate hourly, so a scheduled post appears without a redeploy.
+
+function todayInLagos() {
+  // en-CA formats as YYYY-MM-DD, which compares correctly as a string
+  return new Intl.DateTimeFormat("en-CA", { timeZone: "Africa/Lagos" }).format(
+    new Date()
+  );
+}
+
+// Scheduled posts are visible in `npm run dev` so drafts can be previewed
+const showScheduled = process.env.NODE_ENV !== "production";
+
+function toPostData(slug: string, data: Record<string, any>): PostData {
+  // gray-matter turns an unquoted YAML date into a Date
+  const date =
+    data.date instanceof Date
+      ? data.date.toISOString().slice(0, 10)
+      : String(data.date);
+  return {
+    ...(data as { title: string; excerpt: string }),
+    slug,
+    date,
+    tags: data.tags || [],
+    scheduled: Boolean(data.draft) || date > todayInLagos(),
+  };
+}
+
+function readAllPosts(): PostData[] {
   if (!fs.existsSync(postsDirectory)) {
     return [];
   }
 
-  const fileNames = fs.readdirSync(postsDirectory);
-  const allPostsData = fileNames.map((fileName) => {
-    const slug = fileName.replace(/\.md$/, "");
-    const fullPath = path.join(postsDirectory, fileName);
-    const fileContents = fs.readFileSync(fullPath, "utf8");
-    const matterResult = matter(fileContents);
+  return fs
+    .readdirSync(postsDirectory)
+    .filter((fileName) => fileName.endsWith(".md"))
+    .map((fileName) => {
+      const slug = fileName.replace(/\.md$/, "");
+      const fileContents = fs.readFileSync(
+        path.join(postsDirectory, fileName),
+        "utf8"
+      );
+      return toPostData(slug, matter(fileContents).data);
+    })
+    .filter((post) => showScheduled || !post.scheduled);
+}
 
-    return {
-      slug,
-      tags: matterResult.data.tags || [],
-      ...(matterResult.data as {
-        title: string;
-        date: string;
-        excerpt: string;
-      }),
-    };
-  });
-
-  return allPostsData.sort((a, b) => {
+export function getSortedPostsData(): PostData[] {
+  return readAllPosts().sort((a, b) => {
     if (a.date < b.date) {
       return 1;
     } else {
@@ -109,23 +184,28 @@ export function getSortedPostsData(): PostData[] {
 }
 
 export function getAllPostSlugs() {
-  if (!fs.existsSync(postsDirectory)) {
-    return [];
-  }
-  const fileNames = fs.readdirSync(postsDirectory);
-  return fileNames.map((fileName) => {
+  return readAllPosts().map((post) => {
     return {
       params: {
-        slug: fileName.replace(/\.md$/, ""),
+        slug: post.slug,
       },
     };
   });
 }
 
+// Throws for a missing post, and for a scheduled one in production, so
+// callers' existing not-found handling covers both
 export async function getPostData(slug: string): Promise<PostData> {
+  if (!/^[\w-]+$/.test(slug)) {
+    throw new Error(`Invalid slug: ${slug}`);
+  }
   const fullPath = path.join(postsDirectory, `${slug}.md`);
   const fileContents = await fs.readFile(fullPath, "utf8");
   const matterResult = matter(fileContents);
+  const post = toPostData(slug, matterResult.data);
+  if (post.scheduled && !showScheduled) {
+    throw new Error(`Post not published yet: ${slug}`);
+  }
 
   let contentHtml = md.render(matterResult.content);
 
@@ -164,10 +244,5 @@ export async function getPostData(slug: string): Promise<PostData> {
     '<p class="button-wrapper">$1</p>'
   );
 
-  return {
-    slug,
-    contentHtml,
-    tags: matterResult.data.tags || [],
-    ...(matterResult.data as { title: string; date: string; excerpt: string }),
-  };
+  return { ...post, contentHtml };
 }

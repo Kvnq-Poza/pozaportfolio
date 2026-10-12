@@ -148,9 +148,21 @@ export default function BlogPageClient({
         {/* Posts Grid */}
         {paginatedPosts.length > 0 ? (
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-2">
-            {paginatedPosts.map(({ slug, date, title, excerpt, tags }) => (
+            {paginatedPosts.map(
+              ({ slug, date, title, excerpt, tags, cover, coverAlt, scheduled }) => (
               <Link href={`/blog/${slug}`} key={slug} className="group flex">
                 <Card className="flex flex-col w-full overflow-hidden transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 border-primary/5 bg-card/50 backdrop-blur-sm group-hover:border-primary/20">
+                  {cover && (
+                    <div className="aspect-video overflow-hidden border-b border-primary/5">
+                      <img
+                        src={cover}
+                        alt={coverAlt || ""}
+                        loading="lazy"
+                        decoding="async"
+                        className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      />
+                    </div>
+                  )}
                   <CardHeader className="flex-grow">
                     <div className="flex items-center justify-between mb-4">
                       <div className="flex items-center gap-2 text-xs font-medium text-muted-foreground">
@@ -162,6 +174,11 @@ export default function BlogPageClient({
                             day: "numeric",
                           })}
                         </time>
+                        {scheduled && (
+                          <span className="px-1.5 py-0.5 rounded bg-primary/10 text-primary text-[10px] font-bold uppercase tracking-wider">
+                            Scheduled
+                          </span>
+                        )}
                       </div>
                       <div className="h-1 w-8 bg-primary/20 rounded-full group-hover:w-12 group-hover:bg-primary/50 transition-all duration-300" />
                     </div>
@@ -190,7 +207,8 @@ export default function BlogPageClient({
                   </CardContent>
                 </Card>
               </Link>
-            ))}
+              )
+            )}
           </div>
         ) : (
           <div className="text-center py-24 space-y-4">

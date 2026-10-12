@@ -2,6 +2,9 @@ import type { MetadataRoute } from "next";
 import { getSortedPostsData } from "@/lib/blog";
 import { absoluteUrl } from "@/lib/seo";
 
+// Picks up scheduled posts on their publish date (see lib/blog.ts)
+export const revalidate = 3600;
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const posts = getSortedPostsData();
   const latestPost = posts[0]?.date ? new Date(posts[0].date) : new Date();

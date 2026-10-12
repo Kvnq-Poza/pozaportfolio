@@ -23,7 +23,10 @@ export async function generateStaticParams() {
   return getAllPostSlugs().map((p) => p.params);
 }
 
-export const dynamicParams = false;
+// Scheduled posts aren't in generateStaticParams yet; they render on first
+// request once their date passes (getPostData throws, so notFound, until then)
+export const dynamicParams = true;
+export const revalidate = 3600;
 
 export async function generateMetadata({
   params,
@@ -106,7 +109,9 @@ export default async function Post({
             url: postUrl,
             headline: postData.title,
             description: postData.excerpt,
-            image: `${postUrl}/opengraph-image`,
+            image: postData.cover
+              ? [absoluteUrl(postData.cover), `${postUrl}/opengraph-image`]
+              : `${postUrl}/opengraph-image`,
             datePublished: postData.date,
             dateModified: postData.updated || postData.date,
             keywords: postData.tags.join(", "),
@@ -137,7 +142,7 @@ export default async function Post({
         <header className="space-y-6 mb-16">
           <div className="flex items-center gap-3 text-sm font-medium text-muted-foreground flex-wrap">
             <div className="px-2 py-0.5 rounded bg-primary/10 text-primary text-[10px] font-bold uppercase tracking-wider">
-              Article
+              {postData.scheduled ? "Scheduled" : "Article"}
             </div>
             <span className="h-1 w-1 rounded-full bg-muted-foreground/30" />
             <CalendarDays className="h-4 w-4" />
@@ -155,6 +160,14 @@ export default async function Post({
           <p className="text-lg sm:text-xl md:text-2xl text-muted-foreground leading-relaxed font-medium italic border-l-4 border-primary/20 pl-4 sm:pl-6 py-2">
             {postData.excerpt}
           </p>
+          {postData.cover && (
+            <img
+              src={postData.cover}
+              alt={postData.coverAlt || ""}
+              className="w-full aspect-video object-cover rounded-2xl border border-primary/10 shadow-lg"
+              fetchPriority="high"
+            />
+          )}
         </header>
 
         <style
@@ -477,7 +490,35 @@ export default async function Post({
             height: auto;
           }
 
-          /* ===== HORIZONTAL RULE ===== */
+          /* Standalone markdown images render as <figure>; the title is the caption */
+          .prose .md-figure {
+            margin: 2.5rem 0;
+          }
+
+          .prose .md-figure img {
+            margin: 0 auto;
+          }
+
+          /* An image inside running text (an icon or badge) stays inline at text size */
+          .prose p img {
+            display: inline-block;
+            height: 1.25em;
+            width: auto;
+            margin: 0 0.15em;
+            vertical-align: -0.25em;
+            border-radius: 0.25rem;
+            box-shadow: none;
+          }
+
+          .prose figcaption {
+            margin-top: 0.875rem;
+            text-align: center;
+            font-size: 0.875rem;
+            line-height: 1.5;
+            color: hsl(var(--muted-foreground));
+          }
+
+                    /* ===== HORIZONTAL RULE ===== */
           .prose hr {
             border: none;
             border-top: 2px solid hsl(var(--primary) / 0.1);
