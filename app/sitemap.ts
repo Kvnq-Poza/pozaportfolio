@@ -16,12 +16,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: absoluteUrl("/blog"), lastModified: latestPost, changeFrequency: "weekly", priority: 0.8 },
   ];
 
-  const postEntries: MetadataRoute.Sitemap = posts.map((post) => ({
-    url: absoluteUrl(`/blog/${post.slug}`),
-    lastModified: new Date(post.date),
-    changeFrequency: "yearly",
-    priority: 0.6,
-  }));
+  const postEntries: MetadataRoute.Sitemap = posts
+    .filter((post) => !post.noindex)
+    .map((post) => ({
+      url: absoluteUrl(`/blog/${post.slug}`),
+      lastModified: new Date(post.updated || post.date),
+      changeFrequency: "yearly",
+      priority: 0.6,
+    }));
 
   return [...pages, ...postEntries];
 }
