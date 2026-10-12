@@ -40,6 +40,7 @@ export async function generateMetadata({
       keywords: postData.tags,
       authors: [{ name: POZA_DATA.name, url: SITE.url }],
       alternates: { canonical: path },
+      ...(postData.noindex && { robots: { index: false, follow: true } }),
       openGraph: {
         type: "article",
         url: path,
